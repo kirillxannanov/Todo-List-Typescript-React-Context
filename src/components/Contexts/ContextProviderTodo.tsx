@@ -51,8 +51,8 @@ export const ContextTodo = createContext<IContext>({
 })
 
 const ContextProviderTodo: FC<IContextProviderTodo> = ({ children }) => {
-	const [todoList, setTodoList] = useState<any>(
-		JSON.parse(localStorage.getItem('todoList')) || []
+	const [todoList, setTodoList] = useState(
+		JSON.parse(localStorage.getItem('todoList') || '') || []
 	)
 	const [todo, setTodo] = useState<string>('')
 

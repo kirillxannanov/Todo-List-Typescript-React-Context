@@ -1,4 +1,4 @@
-import { FC, useContext } from 'react'
+import { FC, FormEvent, useContext } from 'react'
 import Draggable from 'react-draggable'
 import { FaCheck } from 'react-icons/fa6'
 import { MdDelete, MdEdit } from 'react-icons/md'
@@ -42,8 +42,8 @@ const Todo: FC<ITodo> = ({
 		)
 	}
 
-	const onSubmit = e => {
-		e.prevantDefault()
+	const onSubmit = (e: FormEvent<HTMLInputElement>) => {
+		e.preventDefault()
 	}
 
 	const handlerEditTextTodo = (id: string, text: string) => {
@@ -56,9 +56,13 @@ const Todo: FC<ITodo> = ({
 			})
 		)
 	}
+	interface IOnStop {
+		x: number
+		y: number
+	}
 
-	const onStop = (data: Object, index: number) => {
-		let newArray = [...todoList]
+	const onStop = (data: IOnStop, index: number) => {
+		const newArray = [...todoList]
 		newArray[index].defaultPos = { x: data.x, y: data.y }
 		setTodoList(newArray)
 	}
