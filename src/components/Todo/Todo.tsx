@@ -69,6 +69,7 @@ const Todo: FC<ITodo> = ({
 
 	return (
 		<Draggable
+			cancel='.btn'
 			defaultPosition={defaultPos}
 			onStop={(_, data) => onStop(data, index)}
 		>
@@ -84,7 +85,10 @@ const Todo: FC<ITodo> = ({
 					}}
 				>
 					{isEdit ? (
-						<form onSubmit={() => handlerEditTextTodo(todoId, todo)}>
+						<form
+							className='btn'
+							onSubmit={() => handlerEditTextTodo(todoId, todo)}
+						>
 							<input
 								className=' border-solid border-2 rounded-lg w-40 size-10 	'
 								type='text'
@@ -105,23 +109,29 @@ const Todo: FC<ITodo> = ({
 					)}
 				</div>
 				<div className='flex items-center gap-3 '>
-					<FaCheck
-						title='Done'
-						size={30}
-						onClick={() => handlerDoneTodo(todoId)}
-					/>
+					<button className='btn'>
+						<FaCheck
+							title='Done'
+							size={30}
+							onClick={() => handlerDoneTodo(todoId)}
+						/>
+					</button>
 
-					<MdEdit
-						title='Edit'
-						size={30}
-						onClick={() => handlerEditTextTodo(todoId, todo)}
-					/>
+					<button className='btn'>
+						<MdEdit
+							title='Edit'
+							size={30}
+							onClick={() => handlerEditTextTodo(todoId, todo)}
+						/>
+					</button>
 
-					<MdDelete
-						title='Delete'
-						size={30}
-						onClick={() => handlerDeleteTodo(todoId)}
-					/>
+					<button className='btn'>
+						<MdDelete
+							title='Delete'
+							size={30}
+							onClick={() => handlerDeleteTodo(todoId)}
+						/>
+					</button>
 				</div>
 			</div>
 		</Draggable>
